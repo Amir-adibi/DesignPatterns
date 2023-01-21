@@ -5,6 +5,7 @@ namespace app\core;
 class Router
 {
     public Request $request;
+    public Response $response;
     protected array $routes = [];
 
     /*
@@ -21,9 +22,10 @@ class Router
      * ]
      */
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
+        $this->response = $response;
     }
 
     public function get($path, $callback)
@@ -38,6 +40,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if ($callback === false) {
+            $this->response->setStatusCode(404);
             return "Not found";
         }
 
@@ -74,7 +77,7 @@ class Router
          * when the 'ob_get_clean()' function is called, the data stored in
          * the buffer would be returned and deleted.
          */
-        
+
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
