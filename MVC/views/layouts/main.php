@@ -13,6 +13,8 @@
     <title><?php echo $this->title ?></title>
 </head>
 <body>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -32,7 +34,9 @@
     </div>
 </nav>
 
-{{content}}
+<div class="container">
+    {{content}}
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
